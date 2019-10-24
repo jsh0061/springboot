@@ -16,6 +16,7 @@ import java.util.stream.IntStream;
 
 @Component
 public class AppRunner implements ApplicationRunner {
+
     @Autowired
     UserRepository userRepository;
 
@@ -25,11 +26,11 @@ public class AppRunner implements ApplicationRunner {
     @Override
     public void run(ApplicationArguments args) throws Exception {
         User user = userRepository.save(User.builder()
-            .name("saelobi")
-            .password("saelobi")
-            .email("saelobi@gmail.com")
-            .createdDate((LocalDateTime.now()))
-            .build());
+                .name("saelobi")
+                .password("saelobi")
+                .email("saelobi@gmail.com")
+                .createdDate(LocalDateTime.now())
+                .build());
 
         IntStream.rangeClosed(1, 200).forEach(index ->
                 boardRepository.save(Board.builder()
@@ -40,7 +41,6 @@ public class AppRunner implements ApplicationRunner {
                         .createdDate(LocalDateTime.now())
                         .updateDate(LocalDateTime.now())
                         .user(user).build()));
-
-
     }
+
 }
