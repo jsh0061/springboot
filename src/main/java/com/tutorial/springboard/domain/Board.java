@@ -1,7 +1,9 @@
+//게시글
 package com.tutorial.springboard.domain;
 
 import com.tutorial.springboard.domain.enums.BoardType;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -13,6 +15,7 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @Entity
 @Table
+@Builder
 public class Board {
 
     @Id
@@ -39,8 +42,6 @@ public class Board {
     @Column
     private LocalDateTime updateDate;
 
-
-
-
-
+    @OneToOne(fetch=FetchType.LAZY)
+    private User user;
 }
