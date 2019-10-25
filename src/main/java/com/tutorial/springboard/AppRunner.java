@@ -26,9 +26,9 @@ public class AppRunner implements ApplicationRunner {
     @Override
     public void run(ApplicationArguments args) throws Exception {
         User user = userRepository.save(User.builder()
-                .name("saelobi")
-                .password("saelobi")
-                .email("saelobi@gmail.com")
+                .name("test")
+                .password("1234")
+                .email("test@gmail.com")
                 .createdDate(LocalDateTime.now())
                 .build());
 
@@ -39,8 +39,14 @@ public class AppRunner implements ApplicationRunner {
                         .content("Content Example " + index)
                         .boardType(BoardType.free)
                         .createdDate(LocalDateTime.now())
-                        .updateDate(LocalDateTime.now())
+                        .updatedDate(LocalDateTime.now())
                         .user(user).build()));
+
+
+
+
+
     }
+
 
 }
