@@ -44,6 +44,32 @@ public class Board {
 
     @OneToOne(fetch=FetchType.LAZY)
     private User user;
+
+
+//    삭제, 수정을 위해 소스 추가
+@Builder
+public Board(String title, String subTitle, String content, BoardType boardType, LocalDateTime createdDate, LocalDateTime updatedDate, User user) {
+    this.title = title;
+    this.subTitle = subTitle;
+    this.content = content;
+    this.boardType = boardType;
+    this.createdDate = createdDate;
+    this.updatedDate = updatedDate;
+    this.user = user;
+}
+
+    public void setCreatedDateNow() {
+        this.createdDate = LocalDateTime.now();
+    }
+
+    public void update(Board board) {
+        this.title = board.getTitle();
+        this.subTitle = board.getSubTitle();
+        this.content = board.getContent();
+        this.boardType = board.getBoardType();
+        this.updatedDate = LocalDateTime.now();
+    }
+
 }
 
 //import com.tutorial.springboard.domain.enums.BoardType;

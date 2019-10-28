@@ -37,6 +37,8 @@ public class User implements Serializable {
 
     @Column
     public LocalDateTime updatedDate;
+
+
 }
 
 //

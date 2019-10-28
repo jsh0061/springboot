@@ -72,15 +72,19 @@
 
 <!--<div th:replace="layout/footer::footer"></div>-->
 
-<script th:src="@{/js/jquery.min.js}"></script>
+<!--<script th:src="@{/js/jquery.min.js}"></script>-->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 <script th:if="!${board?.idx}">
+
     $('#insert').click(function(){
+
         var jsonData = JSON.stringify({
             title: $('#board_title').val(),
             subTitle: $('#board_sub_title').val(),
             content: $('#board_content').val(),
             boardType: $('#board_type option:selected').val()
         });
+
         $.ajax({
             url: "http://localhost:8081/api/boards",
             type: "POST",
@@ -96,10 +100,13 @@
             }
         });
     });
+
 </script>
 
 <script th:if="${board?.idx}">
+
     $('#update').click(function(){
+
         var jsonData = JSON.stringify({
             title: $('#board_title').val(),
             subTitle: $('#board_sub_title').val(),
@@ -107,6 +114,7 @@
             boardType: $('#board_type option:selected').val(),
             createdDate: $('#board_create_date').val()
         });
+
         $.ajax({
             url: "http://localhost:8081/api/boards/" + $('#board_idx').val(),
             type: "PUT",
@@ -122,7 +130,9 @@
             }
         });
     });
+
     $('#delete').click(function(){
+
         $.ajax({
             url: "http://localhost:8081/api/boards/" + $('#board_idx').val(),
             type: "DELETE",
@@ -135,6 +145,8 @@
             }
         });
     })
+
+
 </script>
 
 </body>

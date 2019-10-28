@@ -3,11 +3,11 @@ package com.tutorial.springboard.controller;
 import com.tutorial.springboard.service.BoardService;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 
 //BoardController는 /board URL을 매핑하며 /board/list 을 관리합니다.
@@ -56,4 +56,7 @@ public class BoardController {
         model.addAttribute("boardList", boardService.findBoardList(pageable));
         return "board/list";
     }
+
+
+
 }
