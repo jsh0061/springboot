@@ -72,8 +72,8 @@
 
 <!--<div th:replace="layout/footer::footer"></div>-->
 
-<!--<script th:src="@{/js/jquery.min.js}"></script>-->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+<script th:src="@{/js/jquery.min.js}"></script>
+<!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>-->
 <script th:if="!${board?.idx}">
 
     $('#insert').click(function(){
@@ -86,7 +86,7 @@
         });
 
         $.ajax({
-            url: "http://localhost:8081/api/boards",
+            url: "http://localhost:8080/api/boards",
             type: "POST",
             data: jsonData,
             contentType: "application/json",
@@ -116,7 +116,7 @@
         });
 
         $.ajax({
-            url: "http://localhost:8081/api/boards/" + $('#board_idx').val(),
+            url: "http://localhost:8080/api/boards/" + $('#board_idx').val(),
             type: "PUT",
             data: jsonData,
             contentType: "application/json",
@@ -134,7 +134,7 @@
     $('#delete').click(function(){
 
         $.ajax({
-            url: "http://localhost:8081/api/boards/" + $('#board_idx').val(),
+            url: "http://localhost:8080/api/boards/" + $('#board_idx').val(),
             type: "DELETE",
             success: function(e) {
                 alert('삭제 성공!');

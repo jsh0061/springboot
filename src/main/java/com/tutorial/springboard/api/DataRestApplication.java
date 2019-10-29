@@ -1,7 +1,14 @@
-//package com.tutorial.springboard;
+//package com.tutorial.springboard.api;
+//
+//
+//
+//
+//
 //import org.springframework.boot.SpringApplication;
 //
 //import org.springframework.boot.autoconfigure.SpringBootApplication;
+//
+//import org.springframework.context.annotation.Bean;
 //
 //import org.springframework.context.annotation.Configuration;
 //
@@ -13,21 +20,33 @@
 //
 //import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 //
+//import org.springframework.security.core.userdetails.User;
+//
+//import org.springframework.security.core.userdetails.UserDetails;
+//
+//import org.springframework.security.provisioning.InMemoryUserDetailsManager;
+//
 //import org.springframework.web.cors.CorsConfiguration;
 //
 //import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 //
 //
 //
+//import java.util.ArrayList;
+//
+//import java.util.List;
+//
+//
+//
 //@SpringBootApplication
 //
-//public class RestWebApplication {
+//public class DataRestApplication {
 //
 //
 //
 //    public static void main(String[] args) {
 //
-//        SpringApplication.run(RestWebApplication.class, args);
+//        SpringApplication.run(DataRestApplication.class, args);
 //
 //    }
 //
@@ -40,6 +59,36 @@
 //    @EnableWebSecurity
 //
 //    static class SecurityConfiguration extends WebSecurityConfigurerAdapter {
+//
+//
+//
+//        @Bean
+//
+//        InMemoryUserDetailsManager userDetailsManager() {
+//
+//            User.UserBuilder commonUser = User.withUsername("commonUser")
+//
+//                    .password("{noop}common").roles("USER");
+//
+//
+//
+//            User.UserBuilder zorba = User.withUsername("zorba").password("{noop}test")
+//
+//                    .roles("USER", "ADMIN");
+//
+//
+//
+//            List<UserDetails> userDetailsList = new ArrayList<>();
+//
+//            userDetailsList.add(commonUser.build());
+//
+//            userDetailsList.add(zorba.build());
+//
+//
+//
+//            return new InMemoryUserDetailsManager(userDetailsList);
+//
+//        }
 //
 //
 //
@@ -74,6 +123,16 @@
 //                    .and().csrf().disable();
 //
 //        }
+//
+//    }
+//
+//
+//
+//    @Bean
+//
+//    BoardEventHandler boardEventHandler() {
+//
+//        return new BoardEventHandler();
 //
 //    }
 //

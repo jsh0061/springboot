@@ -70,6 +70,8 @@ public Board(String title, String subTitle, String content, BoardType boardType,
         this.updatedDate = LocalDateTime.now();
     }
 
+    public void setUpdatedDateNow() {
+    }
 }
 
 //import com.tutorial.springboard.domain.enums.BoardType;
