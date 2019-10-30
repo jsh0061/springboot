@@ -1,18 +1,12 @@
 // 애플리케이션이 켜질 어떻게 작동할 지를 정하는 run메서드를 오버라이드 받아씀
 package com.tutorial.springboard;
 
-import com.tutorial.springboard.domain.Board;
-import com.tutorial.springboard.domain.User;
-import com.tutorial.springboard.domain.enums.BoardType;
 import com.tutorial.springboard.repository.BoardRepository;
 import com.tutorial.springboard.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.stereotype.Component;
-
-import java.time.LocalDateTime;
-import java.util.stream.IntStream;
 
 @Component
 public class AppRunner implements ApplicationRunner {
@@ -25,6 +19,7 @@ public class AppRunner implements ApplicationRunner {
 
     @Override
     public void run(ApplicationArguments args) throws Exception {
+        //user, 게시글 생성
 //        User user = userRepository.save(User.builder()
 //                .name("test")
 //                .password("1234")
@@ -41,10 +36,6 @@ public class AppRunner implements ApplicationRunner {
 //                        .createdDate(LocalDateTime.now())
 //                        .updatedDate(LocalDateTime.now())
 //                        .user(user).build()));
-
-//
-
-
 
     }
 
