@@ -17,7 +17,7 @@ public class BoardService {
     }
     public Page<Board> findBoardList(Pageable pageable){
         pageable = PageRequest.of(pageable.getPageNumber() <= 0 ? 0 : pageable.getPageNumber() - 1, pageable.getPageSize());
-        int page = (pageable.getPageNumber() == 0) ? 0 : (pageable.getPageNumber() - 1);
+        int page = (pageable.getPageNumber() == 0) ? 0 : (pageable.getPageNumber());
         pageable = PageRequest.of(page, 10, new Sort(Sort.Direction.DESC,  "boardType", "updatedDate"));
         return boardRepository.findAll(pageable);
     }
