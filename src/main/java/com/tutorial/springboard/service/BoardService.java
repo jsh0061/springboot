@@ -26,4 +26,11 @@ public class BoardService {
         return boardRepository.findById(idx).orElse(new Board());
     }
 
+    public void create() {
+    }
+//    public Board create() {
+//        board.setCreatedDateNow();
+//        boardRepository.save(board);
+//    }
+
 }

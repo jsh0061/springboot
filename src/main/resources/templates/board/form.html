@@ -56,6 +56,14 @@
             </td>
         </tr>
         <tr>
+            <th style="padding:13px 0 0 15px;">조회 날짜</th>
+            <td>
+                <input type="text" class="col-md-1 form-control input-sm" readonly="readonly"
+                       th:value="${boardView?.boardDate}? ${#temporals.format(boardView.boardDate, 'yyyy-MM-dd HH:mm')}
+                           : ${boardView?.boardDate}"/>
+            </td>
+        </tr>
+        <tr>
             <td></td>
             <td></td>
         </tr>
@@ -76,6 +84,11 @@
 <script th:if="!${board?.idx}">
     // 등록
     $('#insert').click(function(){
+
+        if ($('#board_title').val() == null) {
+            alert("제목 없음");
+            return 0;
+        }
 
         var jsonData = JSON.stringify({
             title: $('#board_title').val(),

@@ -2,6 +2,7 @@
 package com.tutorial.springboard;
 
 import com.tutorial.springboard.repository.BoardRepository;
+import com.tutorial.springboard.repository.BoardViewRepository;
 import com.tutorial.springboard.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
@@ -17,9 +18,12 @@ public class AppRunner implements ApplicationRunner {
     @Autowired
     BoardRepository boardRepository;
 
+    @Autowired
+    BoardViewRepository boardViewRepository;
+
     @Override
     public void run(ApplicationArguments args) throws Exception {
-        //user, 게시글 생성
+        //user, 게시글생성
 //        User user = userRepository.save(User.builder()
 //                .name("test")
 //                .password("1234")
@@ -38,6 +42,7 @@ public class AppRunner implements ApplicationRunner {
 //                        .user(user).build()));
 
     }
+
 
 
 }
