@@ -13,7 +13,7 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @Entity
 @Table
-@Builder
+//@Builder
 public class BoardView {
 
     @Id
@@ -23,14 +23,22 @@ public class BoardView {
 
     @Column
     private LocalDateTime boardDate;
-    private BoardView boardview;
+//    private BoardView boardView;
+
+    @OneToOne(fetch=FetchType.LAZY)
+    private User user;
 
     @Builder
-    public BoardView(LocalDateTime boardDate) {
+    public BoardView(LocalDateTime boardDate, User user) {
+        this.user = user;
         this.boardDate = boardDate;
     }
 
-    public void setCreatedDateNow(BoardView boardView) {
+    public void setCreatedDateNow() {
+        this.boardDate = LocalDateTime.now();
+    }
+
+    public void update(BoardView boardView){
         this.boardDate = LocalDateTime.now();
     }
 }
