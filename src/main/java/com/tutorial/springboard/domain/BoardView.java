@@ -23,22 +23,18 @@ public class BoardView {
 
     @Column
     private LocalDateTime boardDate;
-//    private BoardView boardView;
+
+    @ManyToOne
+    private Board board;
 
     @OneToOne(fetch=FetchType.LAZY)
     private User user;
 
     @Builder
-    public BoardView(LocalDateTime boardDate, User user) {
+    public BoardView(Board board, User user) {
+        this.board = board;
         this.user = user;
-        this.boardDate = boardDate;
-    }
-
-    public void setCreatedDateNow() {
         this.boardDate = LocalDateTime.now();
     }
 
-    public void update(BoardView boardView){
-        this.boardDate = LocalDateTime.now();
-    }
 }

@@ -15,34 +15,28 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/api/boards")
 public class BoardRestController {
     private final BoardRepository boardRepository;
-    private final BoardViewRepository boardViewRepository;
-    private final BoardView boardView;
-    private final BoardService boardService;
+//    private final BoardService boardService;
+
+
     public BoardRestController(BoardRepository boardRepository, BoardViewRepository boardViewRepository, BoardView boardView, BoardService boardService) {
         this.boardRepository = boardRepository;
-        this.boardViewRepository = boardViewRepository;
-        this.boardView = boardView;
-        this.boardService = boardService;
+
+//        this.boardService = boardService;
     }
 
     @PostMapping
     public ResponseEntity<?> postBoard(@RequestBody Board board) {
-        boardService.create();
-        boardView.setCreatedDateNow();
+//        boardService.create();
+        board.setCreatedDateNow();
+        boardRepository.save(board);
         return new ResponseEntity<>("{}", HttpStatus.CREATED);
     }
 
     @PutMapping("/{idx}")
     public ResponseEntity<?> putBoard(@PathVariable("idx") Long idx, @RequestBody Board board, @RequestBody BoardView boardView) {
         Board persistBoard = boardRepository.getOne(idx);
-        BoardView persistBoardView = boardViewRepository.getOne(idx);
         persistBoard.update(board);
-        persistBoardView.update(boardView);
         boardRepository.save(persistBoard);
-        boardViewRepository.save(persistBoardView);
-//        BoardView persistBoardView = boardViewRepository.getOne(idx);
-//        persistBoardView.setCreatedDateNow(boardView);
-//        boardViewRepository.save(persistBoardView);
         return new ResponseEntity<>("{}", HttpStatus.OK);
     }
 

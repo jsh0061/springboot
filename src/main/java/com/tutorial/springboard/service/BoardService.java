@@ -11,26 +11,65 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class BoardService {
+
+    // board view service boardViewService
     private final BoardRepository boardRepository;
-    public BoardService(BoardRepository boardRepository){
+
+    public BoardService(BoardRepository boardRepository) {
         this.boardRepository = boardRepository;
     }
-    public Page<Board> findBoardList(Pageable pageable){
+
+    public Page<Board> findBoardList(Pageable pageable) {
         pageable = PageRequest.of(pageable.getPageNumber() <= 0 ? 0 : pageable.getPageNumber() - 1, pageable.getPageSize());
         int page = (pageable.getPageNumber() == 0) ? 0 : (pageable.getPageNumber());
-        pageable = PageRequest.of(page, 10, new Sort(Sort.Direction.DESC,  "boardType", "updatedDate"));
+        pageable = PageRequest.of(page, 10, new Sort(Sort.Direction.DESC, "boardType", "updatedDate"));
         return boardRepository.findAll(pageable);
     }
 
-    public Board findBoardByIdx(Long idx){
+//    public Board findBoardByIdx(Long idx, User user) {
+//        Board board = boardRepository.findById(idx).orElseThrow(() -> new RuntimeException("Not found"));
+//        if (!board.getUser().equals(user)) {
+////           boardViewService.increase(board, user);
+//        }
+//        return boardRepository.findById(idx).orElse(new Board());
+//    }
+
+    public Board findBoardByIdx(Long idx) {
+        Board board = boardRepository.findById(idx).orElseThrow(() -> new RuntimeException("Not found"));
+//        if (!board.getUser().equals(user)) {
+////           boardViewService.increase(board, user);
+//        }
         return boardRepository.findById(idx).orElse(new Board());
     }
 
-    public void create() {
-    }
-//    public Board create() {
-//        board.setCreatedDateNow();
-//        boardRepository.save(board);
+
+
+//    public void create() {
+//    }
+
+//    public BoardView create(User user){
+//        BoardView.builder()
+//                .user()
+//                .boardDate()
+//                .build();
+//        boardRepository.save(user);
+//    }
+
+
+//    public Board create(User user) {
+//        BoardView.builder()
+//               .user()
+//               .boardDate()
+//               .build();
+//       boardRepository.save(user);
+//    }
+
+//    public Board create(User user) {
+//        BoardView.builder()
+//                .user()
+//                .boardDate()
+//                .build();
+//        boardRepository.save(user);
 //    }
 
 }
